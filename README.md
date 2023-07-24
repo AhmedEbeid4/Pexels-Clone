@@ -46,3 +46,15 @@ An Android app developed with Kotlin that allows users to browse and download hi
 <img src="https://github.com/AhmedEbeid4/Weather-App/assets/90563044/ca742c29-7c71-440c-a3f6-2cc800b45d4a" height="500" width="250"/>&nbsp;&nbsp;
 <img src="https://github.com/AhmedEbeid4/Weather-App/assets/90563044/47180d41-eaa1-4901-ad86-d3a55dcce276" height="300" width="600"/>&nbsp;&nbsp;
 
+<br>
+<br>
+
+## Getting Started
+
+    Obtain API Key: To use the Pexels-Clone app, you need to sign up on the Pexels website to get your API key.
+
+    Clone the repository and open the project in Android Studio.
+
+    Add your API Key: Once you have your API key, locate the Constants.kt file in the project and replace CLIENT-ID with your actual Pexels API key.
+
+    Build the project and run it on your Android device or emulator.
