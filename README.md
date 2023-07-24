@@ -26,6 +26,9 @@ An Android app developed with Kotlin that allows users to browse and download hi
     Retrofit
     Room
     Paging
+    ExoPlayer
+    Broadcast Receiver
+    DownloadManager
     Kotlin Coroutines
     LiveData
     Flows
