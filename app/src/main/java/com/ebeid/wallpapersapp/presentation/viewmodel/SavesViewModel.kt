@@ -100,7 +100,4 @@ constructor(
     }
 
 
-    private fun removeItem(index: Int) = _savedPicturesList.value!!.data!!.removeAt(index)
-
-
 }

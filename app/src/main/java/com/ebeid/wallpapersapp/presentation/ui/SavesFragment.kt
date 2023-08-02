@@ -38,19 +38,21 @@ class SavesFragment : Fragment() {
 
     private fun setupAdapter() {
         adapter = PictureListAdapter({
-            val item = it
-            val action = SavesFragmentDirections.actionSavesFragmentToImagePreviewFragment(
-                item.primaryImageUrl,
-                item.id,
-                item.large,
-                item.large2xPicture,
-                item.small,
-                item.medium,
-                item.portrait,
-                item.landscape,
-                item.tiny
-            )
-            findNavController().navigate(action)
+            try {
+                val item = it
+                val action = SavesFragmentDirections.actionSavesFragmentToImagePreviewFragment(
+                    item.primaryImageUrl,
+                    item.id,
+                    item.large,
+                    item.large2xPicture,
+                    item.small,
+                    item.medium,
+                    item.portrait,
+                    item.landscape,
+                    item.tiny
+                )
+                findNavController().navigate(action)
+            }catch (_:Exception){}
         }, {
             viewModel.unSaveSavedPicture(it)
         })

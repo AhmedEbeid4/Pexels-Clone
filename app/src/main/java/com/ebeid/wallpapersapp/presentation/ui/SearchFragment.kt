@@ -55,19 +55,7 @@ class SearchFragment : Fragment() {
 
     private fun setupAdapters() {
         pictureAdapter = ItemAdapter(PICTURE_ITEM, NETHER_VIDEO_NOR_PICTURE, {
-            val item = it as Picture
-            val action = SearchFragmentDirections.actionSearchFragmentToImagePreviewFragment(
-                item.primaryImageUrl,
-                item.id,
-                item.large,
-                item.large2xPicture,
-                item.small,
-                item.medium,
-                item.portrait,
-                item.landscape,
-                item.tiny
-            )
-            findNavController().navigate(action)
+            navigateToImagePreview(it as Picture)
         }, {
             savesViewModel.hasSaved(it)
         }, {
@@ -79,9 +67,7 @@ class SearchFragment : Fragment() {
         })
         videoAdapter = ItemAdapter(
             VIDEO_ITEM, PICTURE_ONLY, {
-                val action =
-                    SearchFragmentDirections.actionSearchFragmentToVideoPreviewFragment(it as VideoModel)
-                findNavController().navigate(action)
+                navigateToVideoPreview(it)
             }, null, null
         )
     }
@@ -151,6 +137,30 @@ class SearchFragment : Fragment() {
         }
     }
 
+    private fun navigateToImagePreview(item : Picture){
+        try{
+            val action = SearchFragmentDirections.actionSearchFragmentToImagePreviewFragment(
+                item.primaryImageUrl,
+                item.id,
+                item.large,
+                item.large2xPicture,
+                item.small,
+                item.medium,
+                item.portrait,
+                item.landscape,
+                item.tiny
+            )
+            findNavController().navigate(action)
+        }catch (_:Exception){}
+    }
+
+    private fun navigateToVideoPreview(item: PexelsModel){
+        try {
+            val action =
+                SearchFragmentDirections.actionSearchFragmentToVideoPreviewFragment(item as VideoModel)
+            findNavController().navigate(action)
+        }catch (_:Exception){}
+    }
     private fun closeKeyboard() {
         val view = requireView()
         val inputMethodManager =

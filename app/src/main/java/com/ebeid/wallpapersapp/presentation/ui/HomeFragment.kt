@@ -1,6 +1,7 @@
 package com.ebeid.wallpapersapp.presentation.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -52,20 +53,7 @@ class HomeFragment : Fragment() {
     }
     private fun setupAdapter(){
         pictureAdapter = ItemAdapter(PICTURE_ITEM, NETHER_VIDEO_NOR_PICTURE, {
-            val item = it as Picture
-            val action = HomeFragmentDirections.actionHomeFragmentToImagePreviewFragment(
-                item.primaryImageUrl,
-                item.id,
-                item.large,
-                item.large2xPicture,
-                item.small,
-                item.medium,
-                item.portrait,
-                item.landscape,
-                item.tiny
-            )
-            findNavController().navigate(action)
-
+            navigateToImagePreview(it as Picture)
         }, {
             savesViewModel.hasSaved(it)
         }, {
@@ -77,9 +65,7 @@ class HomeFragment : Fragment() {
         })
 
         videoAdapter = ItemAdapter(VIDEO_ITEM, VIDEO_ONLY, {
-            val action =
-                HomeFragmentDirections.actionHomeFragmentToVideoPreviewFragment(it as VideoModel)
-            findNavController().navigate(action)
+            navigateToVideoPreview(it)
         }, null, null)
     }
 
@@ -115,6 +101,32 @@ class HomeFragment : Fragment() {
                 videoAdapter.submitData(it as PagingData<PexelsModel>)
             }
         }
+    }
+
+    private fun navigateToImagePreview(item : Picture){
+        try {
+            val action = HomeFragmentDirections.actionHomeFragmentToImagePreviewFragment(
+                item.primaryImageUrl,
+                item.id,
+                item.large,
+                item.large2xPicture,
+                item.small,
+                item.medium,
+                item.portrait,
+                item.landscape,
+                item.tiny
+            )
+            findNavController().navigate(action)
+        }catch (_:Exception){ }
+
+    }
+
+    private fun navigateToVideoPreview(item:PexelsModel){
+        try {
+            val action =
+                HomeFragmentDirections.actionHomeFragmentToVideoPreviewFragment(item as VideoModel)
+            findNavController().navigate(action)
+        }catch (_:Exception){}
     }
     override fun onDestroyView() {
         super.onDestroyView()
