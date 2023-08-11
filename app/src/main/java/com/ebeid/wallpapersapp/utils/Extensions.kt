@@ -5,11 +5,15 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 
 fun View.hide() {
-    if (this.visibility != View.GONE) { this.visibility = View.GONE }
+    if (this.visibility != View.GONE) {
+        this.visibility = View.GONE
+    }
 }
 
 fun View.show() {
-    if (this.visibility != View.VISIBLE) { this.visibility = View.VISIBLE }
+    if (this.visibility != View.VISIBLE) {
+        this.visibility = View.VISIBLE
+    }
 }
 
 fun Fragment.toast(msg: String?) {
